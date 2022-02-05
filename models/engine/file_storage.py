@@ -73,7 +73,7 @@ class FileStorage:
         """Returns the object based on the class and its ID"""
         if cls is not None and cls in classes.values and id is not None:
             class_id = cls.__name__ + "." + id
-            if class_id is in __objects:
+            if class_id in __objects:
                 return self.__objects.get[class_id]
             else:
                 return None

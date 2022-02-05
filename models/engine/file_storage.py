@@ -71,10 +71,10 @@ class FileStorage:
 
     def get(self, cls, id):
         """Returns the object based on the class and its ID"""
-        if cls is not None and cls in classes.values and id is not None:
+        if cls is not None and cls in classes.values() and id is not None:
             class_id = cls.__name__ + "." + id
-            if class_id in __objects:
-                return self.__objects.get[class_id]
+            if class_id in self.__objects:
+                return self.__objects.get(class_id)
             else:
                 return None
         else:

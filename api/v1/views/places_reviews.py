@@ -3,7 +3,8 @@
 
 
 from models import storage
-from models import review
+from models.place import Place
+from models.review import Review
 from api.v1.views import app_views
 from flask import jsonify, request, abort
 

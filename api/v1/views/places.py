@@ -10,7 +10,7 @@ from api.v1.views import app_views
 from flask import jsonify, request, abort
 
 
-@app_views.route("/city/<city_id>/places")
+@app_views.route("/cities/<city_id>/places")
 def places(city_id):
     """ Retrieve a list of all Place objects linked to a City id = city_id """
     cityById = storage.get(City, city_id)
@@ -23,7 +23,7 @@ def places(city_id):
     return jsonify(placeToDict)
 
 
-@app_views.route("/city/<city_id>/places",  methods=["POST"])
+@app_views.route("/cities/<city_id>/places",  methods=["POST"])
 def create_place(city_id):
     """creates a Place linked to a city_id"""
     cityById = storage.get(City, city_id)

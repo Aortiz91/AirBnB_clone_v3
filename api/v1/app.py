@@ -14,6 +14,7 @@ app.url_map.strict_slashes = False
 app.register_blueprint(app_views)
 cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
+
 @app.teardown_appcontext
 def teardown(self):
     """closes storage"""
@@ -34,5 +35,3 @@ if __name__ == "__main__":
     if not port:
         port = '5000'
     app.run(host=host, port=port, threaded=True)
-
-

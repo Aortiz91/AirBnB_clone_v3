@@ -19,7 +19,8 @@ def places(city_id):
     placeToDict = []
     placeList = storage.all(Place).values()
     for item in placeList:
-        placeToDict.append(item.to_dict())
+        if item.city_id == city_id:
+            placeToDict.append(item.to_dict())
     return jsonify(placeToDict)
 
 
@@ -35,12 +36,12 @@ def create_place(city_id):
         return jsonify("Missing name"), 400
     if not request.get_json().get("user_id"):
         return jsonify("Missing user_id"), 400
-    userById = storage.get(User, user_id)
+    userById = storage.get(User, request.get_json().get("user_id"))
     if not userById:
         abort(404)
     newPlace = Place(**(request.get_json()))  # Kwargs
     newPlace.city_id = city_id
-    newPlace.user_id = user_id
+    newPlace.user_id = request.get_json().get("user_id") 
     newPlace.save()
     return jsonify(newPlace.to_dict()), 201
 

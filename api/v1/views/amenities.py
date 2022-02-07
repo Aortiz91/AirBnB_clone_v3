@@ -24,7 +24,7 @@ def amenities():
             if key == "name":
                 newAmenity = Amenity(**(request.get_json()))  # Kwargs
                 newAmenity.save()
-                return jsonify(newCity.to_dict()), 201
+                return jsonify(newAmenity.to_dict()), 201
         return jsonify("Missing name"), 400
 
 

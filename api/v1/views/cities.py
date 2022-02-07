@@ -26,7 +26,7 @@ def cities(state_id):
             return jsonify("Not a JSON"), 400
         for key in request.get_json():
             if key == "name":
-                newCity = State(**(request.get_json()))  # Kwargs
+                newCity = City(**(request.get_json()))  # Kwargs
                 newCity.state_id = state_id
                 newCity.save()
                 return jsonify(newCity.to_dict()), 201
@@ -54,5 +54,5 @@ def city(city_id):
                 continue
             else:
                 setattr(cityById, key, value)
-                storage.save()
+        storage.save()
         return jsonify(cityById.to_dict()), 200

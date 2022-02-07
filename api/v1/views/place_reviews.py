@@ -10,7 +10,7 @@ from flask import jsonify, request, abort
 
 @app_views.route("/places/<place_id>/reviews", methods=["GET"])
 def place_reviews(place_id):
-    """ Retrieves a list of all PlaceReview objects linked to a Place id = place_id """
+    """ Retrieves a list of all PlaceReview """
     placeById = storage.get(Place, place_id)
     if not placeById:
         abort(404)
@@ -20,6 +20,7 @@ def place_reviews(place_id):
         placeReviewToDict.append(item.to_dict())
     return jsonify(placeReviewToDict)
 
+
 @app_views.route("reviews/<review_id>", methods=["GET"])
 def get_review(review_id):
     """ Retrieves a unique PlaceReview object id = review_id """
@@ -28,6 +29,7 @@ def get_review(review_id):
         abort(404)
     if request.method == "GET":
         return jsonify(reviewById.to_dict())
+
 
 @app_views.route("reviews/<review_id>", methods=["DELETE"])
 def delete_review(review_id):
@@ -39,6 +41,7 @@ def delete_review(review_id):
         storage.delete(reviewById)
         storage.save()
         return jsonify(reviewById.to_dict())
+
 
 @app_views.route("/places/<place_id>/reviews", methods=["POST"])
 def create_review(place_id):
@@ -60,6 +63,7 @@ def create_review(place_id):
     newReview.user_id = user_id
     newReview.save()
     return jsonify(newReview.to_dict()), 201
+
 
 @app_views.route("/places/<place_id>/reviews/<review_id>", methods=["PUT"])
 def update_review(place_id, review_id):

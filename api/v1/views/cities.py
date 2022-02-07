@@ -19,7 +19,8 @@ def cities(state_id):
         cityToDict = []
         cityList = storage.all(City).values()
         for item in cityList:
-            cityToDict.append(item.to_dict())
+            if item.state_id == state_id:
+                cityToDict.append(item.to_dict())
         return jsonify(cityToDict)
     if request.method == "POST":
         if request.headers.get("Content-Type") != "application/json":

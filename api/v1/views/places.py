@@ -41,7 +41,7 @@ def create_place(city_id):
         abort(404)
     newPlace = Place(**(request.get_json()))  # Kwargs
     newPlace.city_id = city_id
-    newPlace.user_id = request.get_json().get("user_id") 
+    newPlace.user_id = request.get_json().get("user_id")
     newPlace.save()
     return jsonify(newPlace.to_dict()), 201
 

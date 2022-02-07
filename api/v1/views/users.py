@@ -17,6 +17,7 @@ def users():
         userToDict.append(item.to_dict())
     return jsonify(userToDict)
 
+
 @app_views.route("/users",  methods=["POST"])
 def create_user():
     """creates a new object user"""

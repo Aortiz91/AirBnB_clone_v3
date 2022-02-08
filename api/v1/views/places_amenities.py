@@ -27,7 +27,7 @@ def showAmenityPlace(place_id):
     else:
         amenitiestoDict = placeById.amenities
 
-    return jsonify([items.to_dict() for items in amenitiestoDict)
+    return jsonify([items.to_dict() for items in amenitiestoDict])
 
 
 @app_views.route("/places/<place_id>/amenities/<amenity_id>")
@@ -61,7 +61,7 @@ def deleteAmenityPlace(place_id, amenity_id):
         del placeById.amenities[index]
         placeById.save()
 
-    return (jsonify({}), 200
+    return jsonify({}), 200
 
 
 @app_views.route("/places/<place_id>/amenities/<amenity_id>", methods=["POST"])

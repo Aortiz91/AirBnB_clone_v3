@@ -82,11 +82,11 @@ def createAmenityPlace(place_id, amenity_id):
         else:
             placeById.amenity_ids.append(amenity_id)
             placeById.save()
-            return jsonify(amenity.to_dict()), 201
+            return jsonify(amenityById.to_dict()), 201
     else:
         if amenityById in placeById.amenities:
-            return jsonify(amenity.to_dict()), 200
+            return jsonify(amenityById.to_dict()), 200
         else:
             placeById.amenities.append(amenityById)
             placeById.save()
-            return jsonify(amenity.to_dict()), 201
+            return jsonify(amenityById.to_dict()), 201

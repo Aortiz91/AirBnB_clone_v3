@@ -23,14 +23,15 @@ def showAmenityPlace(place_id):
         placeamenityList = storage.all(Amenity).values()
         for items in placeamenityList:
             if items.id in placeById.amenity_ids:
-                 amenitiestoDict.append(items)
+                amenitiestoDict.append(items)
     else:
         amenitiestoDict = placeById.amenities
 
     return jsonify([items.to_dict() for items in amenitiestoDict])
 
 
-@app_views.route("/places/<place_id>/amenities/<amenity_id>")
+@app_views.route("/places/<place_id>/amenities/<amenity_id>",
+                 methods=["DELETE"])
 def deleteAmenityPlace(place_id, amenity_id):
     """Deletes an amenity from a place"""
     if place_id is None or amenity_id is None:
